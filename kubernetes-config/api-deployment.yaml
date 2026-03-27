@@ -21,3 +21,6 @@ spec:
        name: events-api
        ports:
        - containerPort: 8082
+       env:
+       - name: SERVICE_PORT
+         value: "8082"
