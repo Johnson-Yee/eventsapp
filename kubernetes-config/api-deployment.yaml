@@ -5,7 +5,7 @@ metadata:
    app: events-api
  name: events-api
 spec:
- replicas: 1
+ replicas: 3
  selector:
    matchLabels:
      app: events-api
@@ -24,3 +24,15 @@ spec:
        env:
        - name: SERVICE_PORT
          value: "8082"
+       env:
+       - name: DBHOST
+         value: "database-server-mariadb.default"
+       - name: DBUSER
+         value: "root"
+       - name: DBPASSWORD
+         valueFrom:
+           secretKeyRef:
+             name: database-server-mariadb
+             key: mariadb-root-password
+       - name: DBDATABASE
+         value: "events_db"
